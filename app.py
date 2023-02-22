@@ -7,7 +7,11 @@ app.config["SECRET_KEY"] = "secret"
 def authenticate(f):
     @wraps(f)
     def decorated_func(*args, **kwargs):
-        
+        if "loggedin" in session and session["loggedin"]:
+            return f(*args, **kwargs)
+        else:
+            return redirect(url_for("login"))
+    return decorated_func
 
 @app.route("/")
 def index():
@@ -33,6 +37,14 @@ def login():
             return redirect(url_for("secure"))
 
     return render_template("login/login.html")
+
+
+@app.route("/logout")
+@authenticate
+def logout():
+    session.clear()
+    return redirect(url_for("index"))
+
 
 @app.route("/secure")
 @authenticate

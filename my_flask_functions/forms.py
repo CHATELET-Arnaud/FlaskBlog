@@ -1,3 +1,3 @@
 from wtforms import Form
 
-class loginWTF(Form):
+#class loginWTF(Form):
