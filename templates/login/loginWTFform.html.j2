@@ -1,0 +1,29 @@
+{% extends 'includes/base.html'%}
+{% block title%} Log in {% endblock %}
+{% block content %}
+    <form method="POST" action="#">
+        <table>
+            <tr>
+                <td>
+                    {{ form.uid.label }}
+                </td>
+                <td>
+                    {{ form.uid(class="form-control") }}                    
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form.pwd.label }}
+                </td>
+                <td>
+                    {{ form.pwd() }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                <input class="btn btn-primary" type="submit" value="Login" />
+                </td>
+            </tr>
+        </table>
+    </form>
+{% endblock %}
