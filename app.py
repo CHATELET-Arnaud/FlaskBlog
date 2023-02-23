@@ -1,6 +1,13 @@
 from flask import Flask, render_template, request, session, redirect, url_for
 from functools import wraps
 
+from wtforms import Form, StringField, PasswordField, validators
+
+class loginWTF(Form):
+    uid = StringField("E-mail or username", validators=[validators.InputRequired(), validators.Length(min=5, max=15)])
+    pwd = PasswordField("Password", validators=[validators.InputRequired(), validators.equal_to('pwd2', message="password required")])
+    pwd2 = PasswordField("confirm password", validators=[validators.InputRequired()])
+
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "secret"
 
@@ -19,9 +26,6 @@ def index():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    if "loggedin" in session and session["loggedin"]:
-        return redirect(url_for("secure"))
-
     if request.method == "POST":
         uid = request.form.get("uid", "")
         pwd = request.form.get("pwd", "")
@@ -38,6 +42,22 @@ def login():
 
     return render_template("login/login.html")
 
+
+@app.route("/loginWTFformWithMacro", methods=["GET", "POST"])
+def loginwtf():
+    formWTF = loginWTF(request.form)
+    if request.method == "POST":
+        uid = formWTF.uid.data
+        pwd = formWTF.pwd.data
+
+        if uid == "arno@arno.com" and pwd == "0000":
+            # user is logged in
+            session["loggedin"] = True
+            session["uid"] = uid
+
+            return redirect(url_for("secure"))
+
+    return render_template("login/loginWTFform.html.j2", form=formWTF)
 
 @app.route("/logout")
 @authenticate

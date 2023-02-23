@@ -1,0 +1,11 @@
+{% extends 'includes/base.html'%}
+{% block title%} Log in {% endblock %}
+{% block content %}
+    {% from "includes/_formsHelper.html" import ShowInput %}
+    <form method="POST" action="#">
+        <table>
+            ShowInput(form.uid, class="form-control")
+            ShowInput(form.pwd, class="form-control")
+        </table>
+    </form>
+{% endblock %}

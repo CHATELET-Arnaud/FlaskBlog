@@ -9,6 +9,11 @@
                 </td>
                 <td>
                     {{ form.uid(class="form-control") }}                    
+                    {% for error in form.uid.errors %}
+                        <small id="" class="form-text text-muted" >
+                            {{ error }}
+                        </small>
+                    {% endfor %}
                 </td>
             </tr>
             <tr>
@@ -16,7 +21,7 @@
                     {{ form.pwd.label }}
                 </td>
                 <td>
-                    {{ form.pwd() }}
+                    {{ form.pwd(class="form-control") }}
                 </td>
             </tr>
             <tr>

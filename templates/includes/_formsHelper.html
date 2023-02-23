@@ -1,0 +1,15 @@
+{% macro ShowInput(field) %}
+        <tr>
+            <td>
+                {{ field.label }}
+            </td>
+            <td>
+                {{ field(**kwargs) | safe }}                    
+                {% for error in field.errors %}
+                    <small id="" class="form-text text-muted" >
+                        {{ error }}
+                    </small>
+                {% endfor %}
+            </td>
+        </tr>
+{% endmacro %}

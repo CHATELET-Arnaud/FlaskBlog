@@ -29,11 +29,11 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                <a class="nav-link active" aria-current="page" href="/">Home</a>
               </li>
               {% if not session["loggedin"] %}
               <li class="nav-item">
-                <a class="nav-link" href="{{url_for('login')}}">Log in</a>
+                <a class="nav-link" href="{{url_for('loginwtf')}}">Log in</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Sign up</a>
@@ -57,11 +57,11 @@
         </div>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="{{url_for('static', filename='images/Yuki.jpg')}}" height="260px"/>
+            <!--<img src="{{url_for('static', filename='images/Yuki.jpg')}}" height="260px"/>
             <img src="{{url_for('static', filename='images/TentoMushi.jpg')}}" height="260px"/>
             <img src="{{url_for('static', filename='images/Pito.jpg')}}" height="260px"/>
             <img src="{{url_for('static', filename='images/Denderah1.jpg')}}" width="300px"/>
-            <div class="container">
+            --><div class="container">
               <div class="carousel-caption text-start">
                 <h1>Example headline.</h1>
                 <p>Some representative placeholder content for the first slide of the carousel.</p>
